@@ -1,5 +1,5 @@
 const App = () => {
-	return <h1>Welcome to ProShop</h1>
+	return <p>Welcome to ProShop</p>
 }
 
 export default App
