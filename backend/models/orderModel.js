@@ -1,6 +1,6 @@
 import mongoose from 'mongoose'
 
-const orderSchema = mongoose.Schema(
+const orderSchema = new mongoose.Schema(
 	{
 		user: {
 			type: mongoose.Schema.Types.ObjectId,
@@ -46,7 +46,7 @@ const orderSchema = mongoose.Schema(
 			required: true,
 			default: 0.0,
 		},
-		shoppingPrice: {
+		shippingPrice: {
 			type: Number,
 			required: true,
 			default: 0.0,
@@ -61,7 +61,7 @@ const orderSchema = mongoose.Schema(
 			required: true,
 			default: false,
 		},
-		PaidAt: {
+		paidAt: {
 			type: Date,
 		},
 		isDelivered: {
@@ -69,7 +69,7 @@ const orderSchema = mongoose.Schema(
 			required: true,
 			default: false,
 		},
-		DeliveredAt: {
+		deliveredAt: {
 			type: Date,
 		},
 	},
@@ -78,6 +78,6 @@ const orderSchema = mongoose.Schema(
 	}
 )
 
-const Order = mongoose.model('Order', productSchema)
+const Order = mongoose.model('Order', orderSchema)
 
-export default Product
+export default Order
