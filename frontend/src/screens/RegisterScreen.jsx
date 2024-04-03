@@ -54,19 +54,19 @@ const RegisterScreen = () => {
 
 	return (
 		<FormContainer>
-			<h1>Sing In</h1>
-
-			<Form.Group controlId='name' className='my-3'>
-				<Form.Label>Name</Form.Label>
-				<Form.Control
-					type='text'
-					placeholder='Enter name'
-					value={name}
-					onChange={e => setName(e.target.value)}
-				></Form.Control>
-			</Form.Group>
+			<h1>Sing Up</h1>
 
 			<Form onSubmit={submitHandler}>
+				<Form.Group controlId='name' className='my-3'>
+					<Form.Label>Name</Form.Label>
+					<Form.Control
+						type='text'
+						placeholder='Enter name'
+						value={name}
+						onChange={e => setName(e.target.value)}
+					></Form.Control>
+				</Form.Group>
+
 				<Form.Group controlId='email' className='my-3'>
 					<Form.Label>Email Address</Form.Label>
 					<Form.Control
@@ -91,7 +91,7 @@ const RegisterScreen = () => {
 					<Form.Label>Confirm Password</Form.Label>
 					<Form.Control
 						type='password'
-						placeholder='Confirm password'
+						placeholder='Confirm Password'
 						value={confirmPassword}
 						onChange={e => setConfirmPassword(e.target.value)}
 					></Form.Control>
