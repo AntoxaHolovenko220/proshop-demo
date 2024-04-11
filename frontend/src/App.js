@@ -1,5 +1,4 @@
-import Footer from './components/Footer'
-import Header from './components/Header'
+import { Footer, Header } from '@components'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import { Container } from 'react-bootstrap'

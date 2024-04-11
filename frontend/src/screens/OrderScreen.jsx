@@ -1,13 +1,12 @@
 import { useEffect } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { Row, Col, ListGroup, Image, Form, Button, Card } from 'react-bootstrap'
-import Message from '../components/Message'
-import Loader from '../components/Loader'
+import { Message, Loader } from '@components'
 import {
 	useGetOrderDetailsQuery,
 	usePayOrderMutation,
 	useGetPayPalClientIdQuery,
-} from '../slices/ordersApiSlice'
+} from '@slices/ordersApiSlice'
 import { PayPalButtons, usePayPalScriptReducer } from '@paypal/react-paypal-js'
 import { toast } from 'react-toastify'
 import { useSelector } from 'react-redux'
@@ -63,34 +62,34 @@ const OrderScreen = () => {
 			try {
 				await payOrder({ orderId, details })
 				refetch()
-				toast.success('Payment successful')
-			} catch (error) {
-				toast.error(error?.data?.message || error.message)
+				toast.success('Order is paid')
+			} catch (err) {
+				toast.error(err?.data?.message || err.error)
 			}
 		})
 	}
 
 	async function onApproveTest() {
-		await payOrder({ orderId, details: { paypal: {} } })
+		await payOrder({ orderId, details: { payer: {} } })
 		refetch()
 		toast.success('Payment successful')
 	}
+
 	function onError(error) {
 		toast.error(error.message)
 	}
+
 	function createOrder(data, actions) {
 		return actions.order
 			.create({
 				purchase_units: [
 					{
-						amount: {
-							value: order.totalPrice,
-						},
+						amount: { value: order.totalPrice },
 					},
 				],
 			})
-			.then(orderId => {
-				return orderId
+			.then(orderID => {
+				return orderID
 			})
 	}
 
@@ -143,21 +142,34 @@ const OrderScreen = () => {
 
 						<ListGroup.Item>
 							<h2>Order Items</h2>
-							{order.orderItems.map((item, index) => (
-								<ListGroup.Item key={index}>
-									<Row>
-										<Col md={1}>
-											<Image src={item.image} alt={item.name} fluid rounded />
-										</Col>
-										<Col>
-											<Link to={`/product/${item.product}`}>{item.name}</Link>
-										</Col>
-										<Col md={4}>
-											{item.qty} x ${item.price} = ${item.qty * item.price}
-										</Col>
-									</Row>
-								</ListGroup.Item>
-							))}
+							{order.orderItems.length === 0 ? (
+								<Message>Order is empty</Message>
+							) : (
+								<ListGroup variant='flush'>
+									{order.orderItems.map((item, index) => (
+										<ListGroup.Item key={index}>
+											<Row>
+												<Col md={1}>
+													<Image
+														src={item.image}
+														alt={item.name}
+														fluid
+														rounded
+													/>
+												</Col>
+												<Col>
+													<Link to={`/product/${item.product}`}>
+														{item.name}
+													</Link>
+												</Col>
+												<Col md={4}>
+													{item.qty} x ${item.price} = ${item.qty * item.price}
+												</Col>
+											</Row>
+										</ListGroup.Item>
+									))}
+								</ListGroup>
+							)}
 						</ListGroup.Item>
 					</ListGroup>
 				</Col>
@@ -167,26 +179,30 @@ const OrderScreen = () => {
 							<ListGroup.Item>
 								<h2>Order Summary</h2>
 							</ListGroup.Item>
-
 							<ListGroup.Item>
 								<Row>
 									<Col>Items</Col>
 									<Col>${order.itemsPrice}</Col>
 								</Row>
+							</ListGroup.Item>
+							<ListGroup.Item>
 								<Row>
 									<Col>Shipping</Col>
 									<Col>${order.shippingPrice}</Col>
 								</Row>
+							</ListGroup.Item>
+							<ListGroup.Item>
 								<Row>
 									<Col>Tax</Col>
 									<Col>${order.taxPrice}</Col>
 								</Row>
+							</ListGroup.Item>
+							<ListGroup.Item>
 								<Row>
 									<Col>Total</Col>
 									<Col>${order.totalPrice}</Col>
 								</Row>
 							</ListGroup.Item>
-
 							{!order.isPaid && (
 								<ListGroup.Item>
 									{loadingPay && <Loader />}
@@ -195,25 +211,25 @@ const OrderScreen = () => {
 										<Loader />
 									) : (
 										<div>
+											{/* THIS BUTTON IS FOR TESTING! REMOVE BEFORE PRODUCTION! */}
 											<Button
-												onClick={onApproveTest}
 												style={{ marginBottom: '10px' }}
+												onClick={onApproveTest}
 											>
 												Test Pay Order
 											</Button>
+
 											<div>
 												<PayPalButtons
 													createOrder={createOrder}
 													onApprove={onApprove}
 													onError={onError}
-												/>
+												></PayPalButtons>
 											</div>
 										</div>
 									)}
 								</ListGroup.Item>
 							)}
-
-							{/* MARK AS DELIVERED PLACEHOLDER */}
 						</ListGroup>
 					</Card>
 				</Col>
