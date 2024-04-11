@@ -7,6 +7,7 @@ import PlaceOrderScreen from './PlaceOrderScreen'
 import ProductScreen from './ProductScreen'
 import RegisterScreen from './RegisterScreen'
 import ShippingScreen from './ShippingScreen'
+import ProfileScreen from './ProfileScreen'
 
 export {
 	CartScreen,
@@ -18,4 +19,5 @@ export {
 	ProductScreen,
 	RegisterScreen,
 	ShippingScreen,
+	ProfileScreen,
 }

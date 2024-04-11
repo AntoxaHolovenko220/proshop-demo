@@ -9,8 +9,8 @@ import {
 import { PayPalScriptProvider } from '@paypal/react-paypal-js'
 import { Provider } from 'react-redux'
 import store from './store'
-import './assets/styles/bootstrap.custom.css'
-import './assets/styles/index.css'
+import '@assets/styles/bootstrap.custom.css'
+import '@assets/styles/index.css'
 import App from './App'
 import reportWebVitals from './reportWebVitals'
 import {
@@ -23,6 +23,7 @@ import {
 	PaymentScreen,
 	PlaceOrderScreen,
 	OrderScreen,
+	ProfileScreen,
 } from '@screens'
 import { PrivateRoute } from '@components'
 
@@ -40,6 +41,7 @@ const router = createBrowserRouter(
 				<Route path='/payment' element={<PaymentScreen />} />
 				<Route path='/placeorder' element={<PlaceOrderScreen />} />
 				<Route path='/order/:id' element={<OrderScreen />} />
+				<Route path='/profile' element={<ProfileScreen />} />
 			</Route>
 		</Route>
 	)
