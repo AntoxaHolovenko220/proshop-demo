@@ -7,6 +7,7 @@ import Message from './Message'
 import PrivateRoute from './PrivateRoute'
 import Product from './Product'
 import Rating from './Rating'
+import AdminRoute from './AdminRoute'
 
 export {
 	Footer,
@@ -18,4 +19,5 @@ export {
 	PrivateRoute,
 	Product,
 	Rating,
+	AdminRoute,
 }

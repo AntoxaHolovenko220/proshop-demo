@@ -8,6 +8,7 @@ import ProductScreen from './ProductScreen'
 import RegisterScreen from './RegisterScreen'
 import ShippingScreen from './ShippingScreen'
 import ProfileScreen from './ProfileScreen'
+import OrderListScreen from './admin/OrderListScreen'
 
 export {
 	CartScreen,
@@ -20,4 +21,5 @@ export {
 	RegisterScreen,
 	ShippingScreen,
 	ProfileScreen,
+	OrderListScreen,
 }
