@@ -1,12 +1,12 @@
 import { LinkContainer } from 'react-router-bootstrap'
-import { Table, Button } from 'react-bootstrap'
+import { Table, Button, Tab } from 'react-bootstrap'
 import { FaTimes } from 'react-icons/fa'
 import { Message, Loader } from '@components'
 import { useGetOrdersQuery } from '@slices/ordersApiSlice'
+
 const OrderListScreen = () => {
 	const { data: orders, isLoading, error } = useGetOrdersQuery()
 
-	console.log(orders)
 	return (
 		<>
 			<h1>Orders</h1>
@@ -38,16 +38,18 @@ const OrderListScreen = () => {
 									{order.isPaid ? (
 										order.paidAt.substring(0, 10)
 									) : (
-										<FaTimes style={{ color: 'red' }}></FaTimes>
+										<FaTimes style={{ color: 'red' }} />
 									)}
 								</td>
+
 								<td>
 									{order.isDelivered ? (
-										order.DeliveredAt.substring(0, 10)
+										order.deliveredAt.substring(0, 10)
 									) : (
-										<FaTimes style={{ color: 'red' }}></FaTimes>
+										<FaTimes style={{ color: 'red' }} />
 									)}
 								</td>
+
 								<td>
 									<LinkContainer to={`/order/${order._id}`}>
 										<Button variant='light' className='btn-sm'>
