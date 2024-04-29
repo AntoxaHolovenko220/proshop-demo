@@ -8,6 +8,7 @@ import PrivateRoute from './PrivateRoute'
 import Product from './Product'
 import Rating from './Rating'
 import AdminRoute from './AdminRoute'
+import Paginate from './Paginate'
 
 export {
 	Footer,
@@ -20,4 +21,5 @@ export {
 	Product,
 	Rating,
 	AdminRoute,
+	Paginate,
 }
