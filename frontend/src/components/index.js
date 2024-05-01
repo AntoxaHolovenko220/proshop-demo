@@ -9,6 +9,7 @@ import Product from './Product'
 import Rating from './Rating'
 import AdminRoute from './AdminRoute'
 import Paginate from './Paginate'
+import SearchBox from './SearchBox'
 
 export {
 	Footer,
@@ -22,4 +23,5 @@ export {
 	Rating,
 	AdminRoute,
 	Paginate,
+	SearchBox,
 }
