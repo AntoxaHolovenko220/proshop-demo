@@ -10,6 +10,7 @@ import Rating from './Rating'
 import AdminRoute from './AdminRoute'
 import Paginate from './Paginate'
 import SearchBox from './SearchBox'
+import ProductCarousel from './ProductCarousel'
 
 export {
 	Footer,
@@ -24,4 +25,5 @@ export {
 	AdminRoute,
 	Paginate,
 	SearchBox,
+	ProductCarousel,
 }
