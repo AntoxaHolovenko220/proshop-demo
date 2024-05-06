@@ -11,6 +11,7 @@ import AdminRoute from './AdminRoute'
 import Paginate from './Paginate'
 import SearchBox from './SearchBox'
 import ProductCarousel from './ProductCarousel'
+import Meta from './Meta'
 
 export {
 	Footer,
@@ -26,4 +27,5 @@ export {
 	Paginate,
 	SearchBox,
 	ProductCarousel,
+	Meta,
 }
