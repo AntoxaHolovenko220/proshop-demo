@@ -39,7 +39,6 @@ const ProductScreen = () => {
 
 	const submitHandler = async e => {
 		e.preventDefault()
-
 		try {
 			await createReview({
 				productId,

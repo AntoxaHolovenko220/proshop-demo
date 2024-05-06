@@ -6,7 +6,7 @@ import logo from '@assets/logo.png'
 import { useSelector, useDispatch } from 'react-redux'
 import { useLogoutMutation } from '@slices/usersApiSlice'
 import { logout } from '@slices/authSlice'
-import { SearchBox } from '@components'
+import {SearchBox} from '@components'
 
 const Header = () => {
 	const { cartItems } = useSelector(state => state.cart)
@@ -74,10 +74,10 @@ const Header = () => {
 									<LinkContainer to='/admin/productList'>
 										<NavDropdown.Item>Products</NavDropdown.Item>
 									</LinkContainer>
-									<LinkContainer to='/admin/userList'>
+									<LinkContainer to='/admin/userlist'>
 										<NavDropdown.Item>Users</NavDropdown.Item>
 									</LinkContainer>
-									<LinkContainer to='/admin/orderList'>
+									<LinkContainer to='/admin/orderlist'>
 										<NavDropdown.Item>Orders</NavDropdown.Item>
 									</LinkContainer>
 								</NavDropdown>

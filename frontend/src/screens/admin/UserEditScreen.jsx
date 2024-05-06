@@ -38,7 +38,7 @@ const UserEditScreen = () => {
 		e.preventDefault()
 		try {
 			await updateUser({ userId, name, email, isAdmin })
-			toast.success('User updated successfuly!')
+			toast.success('User updated successfully')
 			refetch()
 			navigate('/admin/userlist')
 		} catch (error) {
@@ -72,7 +72,7 @@ const UserEditScreen = () => {
 							></Form.Control>
 						</Form.Group>
 
-						<Form.Group controlId='email' className='my-2'>
+						<Form.Group controlId='Email' className='my-2'>
 							<Form.Label>Email</Form.Label>
 							<Form.Control
 								type='email'

@@ -82,8 +82,6 @@ const ProductEditScreen = () => {
 		}
 	}
 
-	console.log(product)
-
 	return (
 		<>
 			<Link to='/admin/productlist' className='btn btn-light my-3'>
@@ -148,7 +146,7 @@ const ProductEditScreen = () => {
 						</Form.Group>
 
 						<Form.Group controlId='countInStock' className='my-2'>
-							<Form.Label>CountInStock</Form.Label>
+							<Form.Label>Count In Stock</Form.Label>
 							<Form.Control
 								type='number'
 								placeholder='Enter countInStock'

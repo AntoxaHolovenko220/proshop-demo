@@ -1,23 +1,23 @@
-import CartScreen from './CartScreen'
-import LoginScreen from './LoginScreen'
-import HomeScreen from './HomeScreen'
-import OrderScreen from './OrderScreen'
-import PaymentScreen from './PaymentScreen'
-import PlaceOrderScreen from './PlaceOrderScreen'
-import ProductScreen from './ProductScreen'
-import RegisterScreen from './RegisterScreen'
-import ShippingScreen from './ShippingScreen'
-import ProfileScreen from './ProfileScreen'
-import OrderListScreen from './admin/OrderListScreen'
-import ProductListScreen from './admin/ProductListScreen'
-import ProductEditScreen from './admin/ProductEditScreen'
-import UserListScreen from './admin/UserListScreen'
-import UserEditScreen from './admin/UserEditScreen'
+import CartScreen from './CartScreen.jsx'
+import HomeScreen from './HomeScreen.jsx'
+import LoginScreen from './LoginScreen.jsx'
+import OrderScreen from './OrderScreen.jsx'
+import PaymentScreen from './PaymentScreen.jsx'
+import PlaceOrderScreen from './PlaceOrderScreen.jsx'
+import ProductScreen from './ProductScreen.jsx'
+import RegisterScreen from './RegisterScreen.jsx'
+import ShippingScreen from './RegisterScreen.jsx'
+import ProfileScreen from './ProfileScreen.jsx'
+import OrderListScreen from './admin/OrderListScreen.jsx'
+import ProductListScreen from './admin/ProductListScreen.jsx'
+import ProductEditScreen from './admin/ProductEditScreen.jsx'
+import UserListScreen from './admin/UserListScreen.jsx'
+import UserEditScreen from './admin/UserEditScreen.jsx'
 
 export {
 	CartScreen,
-	LoginScreen,
 	HomeScreen,
+	LoginScreen,
 	OrderScreen,
 	PaymentScreen,
 	PlaceOrderScreen,
