@@ -1,8 +1,8 @@
 import asyncHandler from '../middleware/asyncHandler.js'
 import Product from '../models/productModel.js'
 
-// @desc    Fetch all products
-// @route    GET /api/products
+// @desc		Fetch all products
+// @route		GET /api/products
 // @access  Public
 const getProducts = asyncHandler(async (req, res) => {
 	const pageSize = process.env.PAGINATION_LIMIT
@@ -20,8 +20,8 @@ const getProducts = asyncHandler(async (req, res) => {
 	res.json({ products, page, pages: Math.ceil(count / pageSize) })
 })
 
-// @desc    Fetch a product
-// @route    GET /api/products/:id
+// @desc		Fetch a product
+// @route		GET /api/products/:id
 // @access  Public
 const getProductById = asyncHandler(async (req, res) => {
 	const product = await Product.findById(req.params.id)
@@ -34,8 +34,8 @@ const getProductById = asyncHandler(async (req, res) => {
 	}
 })
 
-// @desc    Create a products
-// @route    Post /api/products
+// @desc		Create a products
+// @route		Post /api/products
 // @access  Private/Admin
 const createProduct = asyncHandler(async (req, res) => {
 	const product = new Product({
@@ -54,8 +54,8 @@ const createProduct = asyncHandler(async (req, res) => {
 	res.status(201).json(createdProduct)
 })
 
-// @desc    Update a product
-// @route    PUT /api/products/:id
+// @desc		Update a product
+// @route		PUT /api/products/:id
 // @access  Private/Admin
 const updateProduct = asyncHandler(async (req, res) => {
 	const { name, price, description, image, brand, category, countInStock } =
@@ -80,8 +80,8 @@ const updateProduct = asyncHandler(async (req, res) => {
 	}
 })
 
-// @desc    Delete a product
-// @route    DELETE /api/products/:id
+// @desc		Delete a product
+// @route		DELETE /api/products/:id
 // @access  Private/Admin
 const deleteProduct = asyncHandler(async (req, res) => {
 	const product = await Product.findById(req.params.id)
@@ -95,8 +95,8 @@ const deleteProduct = asyncHandler(async (req, res) => {
 	}
 })
 
-// @desc    Create a new review
-// @route    POST /api/products/:id/reviews
+// @desc		Create a new review
+// @route		POST /api/products/:id/reviews
 // @access  Private
 const createProductReview = asyncHandler(async (req, res) => {
 	const { rating, comment } = req.body
