@@ -1,5 +1,6 @@
 import asyncHandler from '../middleware/asyncHandler.js';
 import Product from '../models/productModel.js';
+import Supplier from '../models/supplierModel.js';
 
 // @desc    Fetch all products
 // @route   GET /api/products
@@ -67,12 +68,19 @@ const createProduct = asyncHandler(async (req, res) => {
 // @route   PUT /api/products/:id
 // @access  Private/Admin
 const updateProduct = asyncHandler(async (req, res) => {
-  const { name, price, description, image, brand, category, countInStock } =
-    req.body;
+  const { name, price, description, image, brand, category, countInStock } = req.body;
 
   const product = await Product.findById(req.params.id);
 
   if (product) {
+    // Fetch the supplier to check if the brand exists
+    const supplier = await Supplier.findOne({ name: brand });
+
+    if (!supplier) {
+      res.status(400);
+      throw new Error('Brand does not match any supplier name');
+    }
+
     product.name = name;
     product.price = price;
     product.description = description;
@@ -88,6 +96,7 @@ const updateProduct = asyncHandler(async (req, res) => {
     throw new Error('Product not found');
   }
 });
+
 
 // @desc    Delete a product
 // @route   DELETE /api/products/:id
@@ -127,6 +136,8 @@ const createProductReview = asyncHandler(async (req, res) => {
       rating: Number(rating),
       comment,
       user: req.user._id,
+      product: req.params.id,
+      productName: product.name,
     };
 
     product.reviews.push(review);
@@ -142,6 +153,47 @@ const createProductReview = asyncHandler(async (req, res) => {
   } else {
     res.status(404);
     throw new Error('Product not found');
+  }
+});
+
+// @desc    Fetch all reviews
+// @route   GET /api/reviews
+// @access  Public
+const getProductReviews = asyncHandler(async (req, res) => {
+  const pageSize = process.env.PAGINATION_LIMIT || 10;
+  const page = Number(req.query.pageNumber) || 1;
+
+  const products = await Product.find({});
+  const allReviews = products.flatMap((product) => product.reviews);
+
+  const count = allReviews.length;
+  const reviews = allReviews.slice((page - 1) * pageSize, page * pageSize);
+
+  res.json({ reviews, page, pages: Math.ceil(count / pageSize) });
+});
+
+// @desc    Delete a review
+// @route   DELETE /api/reviews/:reviewId
+// @access  Private/Admin
+const deleteProductReview = asyncHandler(async (req, res) => {
+  const { reviewId } = req.params;
+  
+  const product = await Product.findOne({ "reviews._id": reviewId });
+
+  if (product) {
+    
+    product.reviews = product.reviews.filter((review) => review._id.toString() !== reviewId);
+
+    product.numReviews = product.reviews.length;
+    product.rating = product.reviews.reduce((acc, item) => item.rating + acc, 0) / (product.reviews.length || 1); 
+
+    
+    await product.save();
+
+    res.json({ message: 'Review removed' });
+  } else {
+    res.status(404);
+    throw new Error('Review not found');
   }
 });
 
@@ -161,5 +213,7 @@ export {
   updateProduct,
   deleteProduct,
   createProductReview,
-  getTopProducts,
+  getProductReviews,
+  deleteProductReview,
+  getTopProducts
 };

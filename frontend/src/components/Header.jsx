@@ -32,7 +32,7 @@ const Header = () => {
 
   return (
     <header>
-      <Navbar bg='primary' variant='dark' expand='lg' collapseOnSelect>
+      <Navbar bg='dark' variant='dark' expand='lg' collapseOnSelect>  {/* primary */}
         <Container>
           <Navbar.Brand as={Link} to='/'>
             <img src={logo} alt='ProShop' />
@@ -78,6 +78,12 @@ const Header = () => {
                   </NavDropdown.Item>
                   <NavDropdown.Item as={Link} to='/admin/userlist'>
                     Users
+                  </NavDropdown.Item>
+                  <NavDropdown.Item as={Link} to='/admin/supplierlist'>
+                    Suppliers
+                  </NavDropdown.Item>
+                  <NavDropdown.Item as={Link} to='/admin/reviewlist'>
+                    Reviews
                   </NavDropdown.Item>
                 </NavDropdown>
               )}

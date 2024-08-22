@@ -10,6 +10,11 @@ const reviewSchema = mongoose.Schema(
       required: true,
       ref: 'User',
     },
+    product: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Product',
+    },
+    productName: { type: String}
   },
   {
     timestamps: true,
